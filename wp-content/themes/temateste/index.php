@@ -13,7 +13,9 @@ $query->the_post();
 $img = get_the_post_thumbnail_url(get_the_ID(), 'full');
 echo '<h2>' . get_the_title() . '</h2>'; 
 echo "<img src=\"$img\">";
-echo '<p>' . get_the_excerpt() . '</p>';     
+echo '<p>' . get_the_excerpt() . '</p>';
+echo '<p> Mudança no código </p>';  
+echo '<p> Adicionando mais uma mudança </p>';
 }; wp_reset_postdata();  
 }else { 
     echo 'Nenhum post encontrado.'; 
