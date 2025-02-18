@@ -1,27 +1,29 @@
-<?php get_header(); ?>
-
 <?php 
-$query = new WP_Query(array(
-    'post_type' => 'post',
-    'posts_per_page' => -1,
-    'category_name' => 'Notícias'
-)); 
-
-if ($query-> have_posts()) { 
-while ($query->have_posts()) {
-$query->the_post();
-$img = get_the_post_thumbnail_url(get_the_ID(), 'full');
-echo '<h2>' . get_the_title() . '</h2>'; 
-echo "<img src=\"$img\">";
-echo '<p>' . get_the_excerpt() . '</p>';
-echo '<p> Mudança no código </p>';  
-}; wp_reset_postdata();  
-}else { 
-    echo 'Nenhum post encontrado.'; 
-}
+    $selected_header = get_theme_mod('selected_menu');
+    $header_file = $selected_header === 'my_secondary_menu' ? 'secondary' : '';
+    get_header($header_file); 
 ?>
 
-<div>
-    <h2>Está é a parte dinâmica deste projeto</h2>
+<!-- Cards flash news -->
+<h2 class="category_title flash-news">Flash News</h2>
+<div class="area-content">
+    <?php get_template_part('template-parts/content', null, array('category' => 'flash-news')); ?>
 </div>
+
+<h2 class="category_title noticias">Notícias</h2>
+<div class="area-content">
+    <?php get_template_part('template-parts/content', null, array('category' => 'noticias')); ?>
+</div>
+
+<h2 class="category_title tragedias">Tragédias</h2>
+<div class="area-content">
+    <?php get_template_part('template-parts/content', null, array('category' => 'tragedias')); ?>
+</div>
+
+<h2 class="category_title todos">Todas os cards</h2>
+<div class="area-content">
+    <?php get_template_part('template-parts/content', null); ?>
+</div>
+
+
 <?php get_footer(); ?>
